@@ -10,7 +10,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
     [SerializeField]
-    private float strafeAmount = 2f;
+    private float strafeAmountX = 2f;
+    [SerializeField]
+    private float strafeAmountY = 0f;
     [SerializeField]
     private float strafeDuration = 1f;
 
@@ -30,7 +32,7 @@ public class Enemy : MonoBehaviour
         while (true)
         {
             Vector3 startPos = transform.position;
-            Vector3 targetPos = new Vector3(transform.position.x + strafeAmount, transform.position.y, transform.position.z);
+            Vector3 targetPos = new Vector3(transform.position.x + strafeAmountX, transform.position.y + strafeAmountY, transform.position.z);
             float elapsedTime = 0;
 
             while (elapsedTime < strafeDuration)
@@ -40,7 +42,8 @@ public class Enemy : MonoBehaviour
                 yield return null;
             }
 
-            strafeAmount *= -1;
+            strafeAmountX *= -1;
+            strafeAmountY *= -1;
         }
     }
     
